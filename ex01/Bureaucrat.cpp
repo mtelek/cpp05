@@ -6,7 +6,7 @@
 /*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:34:08 by mtelek            #+#    #+#             */
-/*   Updated: 2025/02/26 21:03:37 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:03:18 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,14 @@ const char *GradeTooHighException::what() const throw()
 const char *GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low\n");
+}
+
+void signForm(Form &Form)
+{
+	Form::beSigned(*this);
+	if (Form::getSigned() == true)
+		std::cout << _name << " signed " << Form::getName() << "\n";
+	else if (Form::getSigned() == false)
+		std::cout << _name << " couldnt sign " << Form::getName()
+			<< "because access wasnt granted to the bureaucrat\n";
 }

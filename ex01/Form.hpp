@@ -6,7 +6,7 @@
 /*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 21:53:06 by mtelek            #+#    #+#             */
-/*   Updated: 2025/02/26 22:06:58 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/02/27 15:58:19 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ class Form : public GradeTooHighException, public GradeTooLowException
 {
 	private:
 		const std::string _name;
-		bool _sign;
+		bool _signed = false;
 		const int _g_sign;
 		const int _g_exec;
 
 	public:
 		Form();
 		Form(std::string name, int g_sign, int g_exec);
-		~Form();
+		~Form() throw();
 		Form(const Form &other);
-		Form &operator=(const From &other);
+		Form &operator=(const Form &other); 
 
 		std::string getName() const;
-		int getGradeSign() const;
-		int getGradeExec() const;
+		bool getSigned() const;
+		int getGradeSign() const
+		int getGradeExec() const
 
 		void beSigned(Bureaucrat &Bur)
 
-		
 };
 
 std::ostream &operator<<(std::ostream &os, const Form &Form);
