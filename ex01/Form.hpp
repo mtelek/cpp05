@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 21:53:06 by mtelek            #+#    #+#             */
-/*   Updated: 2025/02/27 15:58:19 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/24 16:11:29 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 #include <string>
 #include "Bureaucrat.hpp"
 
-class Form : public GradeTooHighException, public GradeTooLowException
+class Bureaucrat;
+
+class Form
 {
 	private:
 		const std::string _name;
-		bool _signed = false;
+		bool _signed;
 		const int _g_sign;
 		const int _g_exec;
 
@@ -34,10 +36,19 @@ class Form : public GradeTooHighException, public GradeTooLowException
 
 		std::string getName() const;
 		bool getSigned() const;
-		int getGradeSign() const
-		int getGradeExec() const
+		int getGradeSign() const;
+		int getGradeExec() const;
 
-		void beSigned(Bureaucrat &Bur)
+		void beSigned(Bureaucrat &Bur);
+
+		class GradeTooHighException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class GradeTooLowException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:34:08 by mtelek            #+#    #+#             */
-/*   Updated: 2025/02/27 16:03:18 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/24 17:29:05 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,19 @@ Bureaucrat::~Bureaucrat() throw()
 	std::cout << "Destructor for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade)
 {
-	*this = other;
-	std::cout << "Copy constructor for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
+    std::cout << "Copy constructor for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	std::cout << "Copy assignment operator for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 	if (this != &other)
+	{
 		this->_grade = other._grade;
+		//name here maybe?
+	}
 	return (*this);
 }
 
@@ -90,24 +92,26 @@ void  Bureaucrat::gradeDecrement()
 	setGrade(getGrade()+1);
 }
 
-
 //Exception classes inmplementaions
-const char *GradeTooHighException::what() const throw()
-{
-	return ("Grade is too high\n");
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Bureaucrat grade too high!");
 }
 
-const char *GradeTooLowException::what() const throw()
-{
-	return ("Grade is too low\n");
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Bureaucrat grade too low!");
 }
 
-void signForm(Form &Form)
+void Bureaucrat::signForm(Form &_form)
 {
-	Form::beSigned(*this);
-	if (Form::getSigned() == true)
-		std::cout << _name << " signed " << Form::getName() << "\n";
-	else if (Form::getSigned() == false)
-		std::cout << _name << " couldnt sign " << Form::getName()
-			<< "because access wasnt granted to the bureaucrat\n";
+	try
+	{
+		_form.beSigned(*this);
+		std::cout << _name << " signed " << _form.getName() << "\n";
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << _name << " couldn't sign " << _form.getName() << " because " << e.what() << "\n";
+		throw;
+	}
 }
+	

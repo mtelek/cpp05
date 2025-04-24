@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:34:08 by mtelek            #+#    #+#             */
-/*   Updated: 2025/02/26 21:03:37 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/24 17:32:27 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other)
 	std::cout << "Copy constructor for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) //missing name
 {
 	std::cout << "Copy assignment operator for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 	if (this != &other)
@@ -90,14 +90,11 @@ void  Bureaucrat::gradeDecrement()
 	setGrade(getGrade()+1);
 }
 
-
 //Exception classes inmplementaions
-const char *GradeTooHighException::what() const throw()
-{
-	return ("Grade is too high\n");
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Bureaucrat grade too high!");
 }
 
-const char *GradeTooLowException::what() const throw()
-{
-	return ("Grade is too low\n");
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Bureaucrat grade too low!");
 }

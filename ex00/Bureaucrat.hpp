@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:34:11 by mtelek            #+#    #+#             */
-/*   Updated: 2025/02/26 21:06:13 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/24 17:33:23 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,34 @@
 #include <iostream>
 #include <string>
 
-class GradeTooHighException : public std::exception
+class Bureaucrat
 {
-    public:
-        virtual const char *what() const throw();
-};
+	private:
+		const std::string _name;
+		int _grade;
 
-class GradeTooLowException : public std::exception
-{
-    public:
-        virtual const char *what() const throw();
-};
+	public:
+		Bureaucrat();
+		Bureaucrat(const std::string name, int grade);
+		virtual ~Bureaucrat() throw();
+		Bureaucrat(const Bureaucrat &other);
+		Bureaucrat &operator=(const Bureaucrat &other);
 
-class Bureaucrat : public GradeTooHighException , public GradeTooLowException
-{
-    private:
-        const std::string _name;
-        int _grade;
+		int getGrade() const;
+		void setGrade(int grade);
+		std::string getName() const;
 
-    public:
-        Bureaucrat();
-        Bureaucrat(const std::string name, int grade);
-        virtual ~Bureaucrat() throw();
-        Bureaucrat(const Bureaucrat &other);
-        Bureaucrat &operator=(const Bureaucrat &other);
+		void gradeIncrement();
+		void gradeDecrement();
 
-        int getGrade() const;
-        void setGrade(int grade);
-        std::string getName() const;
-
-        void gradeIncrement();
-        void gradeDecrement();
+		class GradeTooHighException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class GradeTooLowException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &Bur);

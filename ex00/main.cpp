@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:34:14 by mtelek            #+#    #+#             */
-/*   Updated: 2025/02/26 21:39:10 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/24 17:30:10 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int main()
 	{
 		Bureaucrat highGrade("HighGrade", 0); // Invalid grade (Too high)
 	}
-	catch (const GradeTooHighException &e)
+	catch (const Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << RED << "Exception: " << e.what() << RESET;	
 	}
@@ -60,7 +60,7 @@ int main()
 	{
 		Bureaucrat lowGrade("LowGrade", 151); // Invalid grade (Too low)
 	}
-	catch (const GradeTooLowException &e)
+	catch (const Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << RED << "Exception: " << e.what() << RESET;
 	}
@@ -94,9 +94,9 @@ int main()
 		std::cout << extreme << std::endl;
 		extreme.gradeIncrement(); // This will throw GradeTooHighException
 	}
-	catch (const GradeTooHighException &e)
+	catch (const Bureaucrat::GradeTooHighException &e)
 	{
-		std::cout << RED << "Exception: " << e.what() << RESET;
+		std::cout << RED << "Exception: " << e.what() << RESET << "\n";
 	}
 	try
 	{
@@ -104,9 +104,9 @@ int main()
 		std::cout << extremeLow << std::endl;
 		extremeLow.gradeDecrement(); // This will throw GradeTooLowException
 	}
-	catch (const GradeTooLowException &e)
+	catch (const Bureaucrat::GradeTooLowException &e)
 	{
-		std::cout << RED << "Exception: " << e.what() << RESET;
+		std::cout << RED << "Exception: " << e.what() << RESET << "\n";
 	}
 	return (0);
 }
