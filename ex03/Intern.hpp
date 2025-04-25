@@ -30,7 +30,6 @@ class Intern
 		static AForm* makeShrubbery(const std::string& target);
         static AForm* makeRobotomy(const std::string& target);
         static AForm* makePresidential(const std::string& target);
-
 };
 
 #endif

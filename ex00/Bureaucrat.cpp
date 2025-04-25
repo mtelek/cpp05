@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:34:08 by mtelek            #+#    #+#             */
-/*   Updated: 2025/04/24 17:32:27 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/25 15:06:31 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ Bureaucrat::~Bureaucrat() throw()
 	std::cout << "Destructor for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade)
 {
 	*this = other;
 	std::cout << "Copy constructor for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) //missing name
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	std::cout << "Copy assignment operator for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 	if (this != &other)

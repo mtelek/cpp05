@@ -26,8 +26,8 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
-    AForm::operator=(other);
-    return *this;
+	AForm::operator=(other);
+	return (*this);
 }
 
 void PresidentialPardonForm::executeAction() const

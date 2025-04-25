@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 21:52:59 by mtelek            #+#    #+#             */
-/*   Updated: 2025/04/24 17:18:33 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/25 14:43:14 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int Form::getGradeExec() const {
 
 void Form::beSigned(Bureaucrat &Bur)
 {
-	//if (_signed)
-	//	throw std::runtime_error("Form is already signed!");
 	if (Bur.getGrade() > _g_sign)
 		throw GradeTooHighException();
 	_signed = true;

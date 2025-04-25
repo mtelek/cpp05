@@ -37,8 +37,8 @@ void RobotomyRequestForm::executeAction() const
 	static bool seeded = false;
     if (!seeded)
 	{
-    	std::srand(std::time(0));
-     	seeded = true;
+		std::srand(std::time(0));
+		seeded = true;
     }	
 	int result = std::rand() % 2;
 	if (result == 0)

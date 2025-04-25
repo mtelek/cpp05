@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:34:08 by mtelek            #+#    #+#             */
-/*   Updated: 2025/04/24 19:24:06 by mtelek           ###   ########.fr       */
+/*   Updated: 2025/04/25 15:06:41 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ Bureaucrat::~Bureaucrat() throw()
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade)
 {
+	*this = other;
     std::cout << "Copy constructor for Bureaucrat " << _name << " with a grade of " << _grade << " called\n";
 }
 
@@ -45,7 +46,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 	if (this != &other)
 	{
 		this->_grade = other._grade;
-		//name here maybe?
 	}
 	return (*this);
 }
@@ -114,4 +114,3 @@ void Bureaucrat::signForm(Form &form)
 		throw;
 	}
 }
-	
